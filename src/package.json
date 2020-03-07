@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react-dom": "latest",
+    "react": "latest",
+    "antd": "4.0.1",
+    "@ant-design/icons": "latest"
+  }
+}
