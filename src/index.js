@@ -6,6 +6,8 @@ import { Table, Input, Button, Upload, message } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import { UploadOutlined } from "@ant-design/icons";
+import { EyeOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 
 import axios from "axios";
 
@@ -255,45 +257,54 @@ class AntDesignJSON extends React.Component {
           key="articulo"
           width="50%"
         />
-        <Column title="Observaciones" dataIndex="obs" key="obs" width="15%" />
-        <Column title="Emblema" dataIndex="emb" key="emb" width="15%" />
+        <Column title="Observaciones" dataIndex="obs" key="obs" width="5%" />
+        <Column title="Emblema" dataIndex="emb" key="emb" width="5%" />
         <Column
+          colSpan="1"
+          rowSpan="1"
           title="Action"
           key="acciones"
-          width="20%"
+          width="40%"
           render={(text, record) => {
             //console.log("record doc:" + record.key);
-            return record.acciones.map((value, index) => {
-              if (index === 1) {
-                return (
-                  <Upload disabled={!value}>
-                    <Button disabled={!value}>
-                      <UploadOutlined /> Click to Upload
-                    </Button>
-                  </Upload>
-                );
-              } else {
-                return <span />;
-              }
-            });
-            /*record.acciones.map((value, index) => {
-              if (value) {
-                console.log("Valor del mapa" + value);
-              } else {
-              }
-            });*/
-
-            /*{elements.map((value, index) => {
-                return <li key={index}>{value}</li>
-              })}*/
+            return [
+              record.acciones.map((value, index) => {
+                if (index === 1) {
+                  return (
+                    <span>
+                      <Upload disabled={!value}>
+                        <Button shape="circle" disabled={!value}>
+                          <UploadOutlined />
+                        </Button>
+                      </Upload>
+                    </span>
+                  );
+                } else if (index === 0) {
+                  return (
+                    <span>
+                      <Button
+                        icon={<EyeOutlined />}
+                        shape="circle"
+                        disabled={!value}
+                      />
+                    </span>
+                  );
+                } else if (index === 2) {
+                  return (
+                    <span>
+                      <Button
+                        icon={<DeleteOutlined />}
+                        shape="circle"
+                        disabled={!value}
+                      />
+                    </span>
+                  );
+                } else {
+                  return <span />;
+                }
+              })
+            ];
           }}
-          /*render={(text, record) => (
-            <span>
-              <a style={{ marginRight: 16 }}>Invite {record.key}</a>
-              <a>Delete</a>
-            </span>
-            //console.log({record})
-          )}*/
         />
       </Table>
     );
