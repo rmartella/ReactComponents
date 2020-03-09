@@ -4,9 +4,10 @@
     "antd": "4.0.1",
     "axios": "0.19.2",
     "react": "latest",
+    "react-axios": "2.0.3",
     "react-dom": "latest",
     "react-highlight-words": "0.16.0",
-    "react-table": "latest"
+    "react-table": "6.8.6"
   },
   "name": "96pq5",
   "description": null,
