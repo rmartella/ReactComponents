@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./index.css";
 import TableReactTable from "./TableReactTable";
+import SelectDocumentos from "./SelectDocumentos";
 import Pagination from "./Pagination";
 import AntDesignJSON from "./AntDesignTable";
 import { Typography, Divider, Select, Button } from "antd";
@@ -50,10 +51,15 @@ const data = [
 class CargasDocumentos extends React.Component {
   constructor(props) {
     super(props);
-
+    this.handleSelect = this.handleSelect.bind(this);
     this.state = {
-      consulta: false
+      consulta: false,
+      seleccion: 0
     };
+  }
+
+  handleSelect(value) {
+    this.setState({ seleccion: value, consulta: true });
   }
 
   render() {
@@ -61,25 +67,10 @@ class CargasDocumentos extends React.Component {
       <div>
         <Title>Cargas de documentos</Title>
         <Divider type="horizontal" />
-        <Select
-          defaultValue="lucy"
-          style={{ width: 120 }}
-          onChange={(value, object) => {
-            console.log(object.id);
-            this.setState({ consulta: true });
-          }}
-        >
-          <Option id="0" value="jack">
-            Jack
-          </Option>
-          <Option id="1" value="lucy">
-            Lucy
-          </Option>
-          <Option value="disabled" disabled>
-            Disabled
-          </Option>
-          <Option value="Yiminghe">yiminghe</Option>
-        </Select>
+        <SelectDocumentos
+          onChange={this.handleSelect}
+          rutaWS="https://10.35.12.102:8443/docs_ws_revision/ws/obtenTiposClasificacionEleccion"
+        />
         <Divider type="horizontal" />
         {this.state.consulta ? <TableReactTable /> : null}
         <Divider type="horizontal" />

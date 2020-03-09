@@ -24,7 +24,7 @@ class TableReactTable extends React.Component {
   componentDidMount() {
     axios
       .post(
-        "https://192.168.1.142:8443/docs_ws_revision/ws/consultaArticulos",
+        "https://10.35.12.102:8443/docs_ws_revision/ws/consultaArticulos",
         {},
         {
           headers: {
